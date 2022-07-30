@@ -1,0 +1,133 @@
+#filters {
+  position: relative;
+  background-color: tan;
+  display: flex;
+  justify-content: center;
+}
+
+#search {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 40vh;
+}
+
+#search > .backgroundImg {
+  height: 100%;
+}
+
+#search > .backgroundImg > img {
+  height: 100% !important;
+}
+
+.content > form {
+  position: relative;
+  z-index: 999;
+}
+
+.content > form > input {
+  height: 45px;
+  border-radius: 30px;
+  width: 240px;
+  padding: 0 8px;
+}
+
+.content > form > .MuiButton-root {
+  border-radius: 999px;
+  background-color: tan;
+  color: black !important;
+  background-image: none !important;
+  position: absolute;
+  right: 4px;
+  top: 6px;
+}
+
+.mana-cost {
+  background-color: tan;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 16px 0;
+}
+
+.mana__title {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mana-symbol {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+.chosen-filter > img{
+    filter:brightness(1) !important;
+}
+
+.mana-symbol > img {
+  height: 100%;
+  filter: brightness(0.5);
+}
+
+.mana-symbol > h2 {
+  color: white;
+  position: absolute;
+  top: 4px;
+  right: 13px;
+}
+
+.mana-seven {
+  position: absolute;
+  left: 8px !important;
+}
+
+.mana-all {
+  position: absolute;
+  left: 4px;
+}
+
+#card__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: tan;
+}
+
+.card {
+  width: 200px;
+}
+
+.card > img {
+  width: 100%;
+  cursor: pointer;
+}
+
+.pic {
+  border: 10px solid tan;
+  float: left;
+  margin: 20 px;
+  overflow: hidden;
+}
+
+/* Card zoom Effect */
+
+.tilt img {
+  transition: all 300ms ease;
+}
+.tilt img:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .mana-cost {
+    width: 320px;
+  }
+}

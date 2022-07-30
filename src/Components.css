@@ -1,0 +1,62 @@
+/* Reusable styling for special classes */
+
+.no-cursor {
+  cursor: none;
+}
+
+.MuiButton-root {
+  color: white !important;
+  text-transform: inherit !important;
+  background-image: -webkit-linear-gradient(left, #4c0d7a, #b921c4, #4c0d7a);
+  font-family: "Belwe-Bold" !important;
+  border: 1px solid black !important;
+  transition: all 200ms ease;
+}
+
+.MuiButton-root:hover {
+  transform: translateY(-1px);
+}
+
+.MuiButton-root:active {
+  transform: translateY(0);
+}
+
+.link__hover-effect {
+  position: relative;
+}
+
+.link__hover-effect:after {
+  content: "";
+  background-color: black;
+  position: absolute;
+  bottom: -3px;
+  height: 3px;
+  width: 0;
+  right: 0;
+  transition: all 300ms ease;
+}
+
+.link__hover-effect:hover:after {
+  left: 0;
+  width: 100%;
+}
+
+.backgroundImg {
+  position: absolute;
+  height: 85vh;
+}
+
+.backgroundImg > img {
+  height: 100%;
+  filter: brightness(0.6);
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

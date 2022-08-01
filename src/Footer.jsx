@@ -11,16 +11,16 @@ const Footer = () => {
       </div>
 
       <ul className="footer__links">
-        <li className="footer__link link__hover-effect">
+        <li className="footer__link link__hover-effect no-cursor">
           <a href="">About</a>
         </li>
-        <li className="footer__link link__hover-effect">
+        <li className="footer__link link__hover-effect no-cursor">
           <a href="">Support</a>
         </li>
-        <li className="footer__link link__hover-effect">
+        <li className="footer__link link__hover-effect no-cursor">
           <a href="">Contact Us</a>
         </li>
-        <li className="footer__link link__hover-effect">
+        <li className="footer__link link__hover-effect no-cursor">
           <a href="">Legal</a>
         </li>
       </ul>

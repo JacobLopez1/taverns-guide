@@ -27,6 +27,13 @@
   color: white !important;
 }
 
+.applyFilter__button{
+  background-color: tan !important;
+  background-image: none;
+  color: black !important;
+  margin-bottom: 8px !important;
+}
+
 select {
   border-radius: 9999px;
   border: 4px solid goldenrod;
@@ -52,4 +59,12 @@ li {
     right: calc(5vw);
     top: calc(50% - 20px);
     z-index: 9998;
+}
+
+@media (max-width: 768px) {
+  .openFilter__button {
+    position: unset !important;
+    width: 120px;
+    margin-bottom: 16px !important;
+  }
 }

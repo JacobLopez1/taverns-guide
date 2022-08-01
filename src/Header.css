@@ -34,29 +34,34 @@
     align-items: center;
 }
 
-.header__links > .MuiButton-root {
-    border-radius: 24px;
+.header__links > a > .MuiButton-root {
+    border-radius: 24px !important;
     padding: 4px 16px;
     transition:all 200ms ease;
 }
 
 .header__link {
     list-style-type: none;
-    margin: 0 12px;
+    margin: 0 24px;
 }
 
-.header__link > a {
+.header__link > a{
     text-decoration: none;
     color: black;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 580px) {
+    .header__icon > a > h1 {
+        display: none;
+    }
+
     .header__link {
         display: none;
     }
-    .header__links > .MuiButton-root {
+
+    .header__links > a > .MuiButton-root {
         height: 60px;
-        width: 200px;
+        width: 180px;
         font-size: 20px;
         border-radius: 30px;
     }

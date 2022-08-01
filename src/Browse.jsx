@@ -5,15 +5,16 @@ import "./Components.css";
 import Divider from "./Divider";
 import Header from "./Header";
 import SearchBG from "./assets/search-bg.jpg";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ManaCrystal from "./assets/crystal.png";
 import "./Sidebar.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
 import TuneIcon from "@mui/icons-material/Tune";
-
+import Footer from "./Footer";
 const Browse = () => {
+  const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [cardSet, setCardSet] = useState([]);
@@ -36,6 +37,11 @@ const Browse = () => {
 
   const getCardsFromSearch = (event) => {
     event?.preventDefault();
+
+    if (!searchTerm) {
+      return setCardSet(cardSet);
+    }
+
     axios
       .request(options)
       .then(function (response) {
@@ -43,9 +49,7 @@ const Browse = () => {
         const cardsList = cardsData.filter(
           (card) => card.img && card.collectible && card.cardSet != "Hero Skins"
         );
-        console.log(cardsList);
         setCardSet(cardsList);
-        setFilteredCardSet(cardsList);
       })
       .catch(function (error) {
         console.error(error);
@@ -69,6 +73,7 @@ const Browse = () => {
         const cardsList = cardsData.filter(
           (card) => card.img && card.collectible && card.cardSet != "Hero Skins"
         );
+
         setCardSet(cardsList);
       })
       .catch(function (error) {
@@ -76,10 +81,7 @@ const Browse = () => {
       });
   }
 
-  function applyFilters() {
-    if (!searchTerm) {
-        getCardsBySet()
-    }
+  async function applyFilters() {
     let filteredCardSet = cardSet;
 
     //Filter By Mana
@@ -116,25 +118,39 @@ const Browse = () => {
     if (selectedSort === "MANA_LOW_TO_HIGH") {
       filteredCardSet.sort((a, b) => a.cost - b.cost);
     } else if (selectedSort === "MANA_HIGH_TO_LOW") {
-      filteredCardSet = filteredCardSet.sort((a, b) => b.cost - a.cost);
+      filteredCardSet.sort((a, b) => b.cost - a.cost);
     } else if (selectedSort === "A_TO_Z") {
       filteredCardSet.sort((a, b) => a.name.localeCompare(b.name));
     } else if (selectedSort === "Z_TO_A") {
       filteredCardSet.sort((a, b) => b.name.localeCompare(a.name));
     }
 
+    console.log(cardSet)
     setFilteredCardSet(filteredCardSet);
-    console.log('printing...')
+    if(cardSet.length != 0) {
+      setLoading(false)
+      console.log('done')
+    }
   }
 
   useEffect(() => {
-    applyFilters();
-  }, [manaFilter, selectedClass, selectedType, selectedRarity, selectedSort]);
+    if (!searchTerm) {
+      getCardsBySet();
+    }
+  }, [
+    manaFilter,
+    selectedClass,
+    selectedType,
+    selectedRarity,
+    selectedSort,
+    selectedSet,
+    searchTerm,
+  ]);
 
   useEffect(() => {
+    applyFilters();
+  }, [cardSet]);
 
-  }, [selectedSet])
-  
   return (
     <>
       <>
@@ -160,12 +176,15 @@ const Browse = () => {
                   <option value="Z_TO_A">Card Name: Z to A</option>
                 </select>
               </li>
-              <Button onClick={() => setMenuOpen(false)}>Apply Sort</Button>
+              <Button className="applyFilter__button" onClick={() => setMenuOpen(false)}>Apply Sort</Button>
             </ul>
             <h1>Filters:</h1>
             <ul className="sidebar__menuSection">
               <li>
-                <select className="filter" onChange={(e) => setSelectedSet(e.target.value)}>
+                <select
+                  className="filter"
+                  onChange={(e) => setSelectedSet(e.target.value)}
+                >
                   <option value="voyage-to-the-sunken-city">
                     Voyage to the Sunken City
                   </option>
@@ -222,7 +241,9 @@ const Browse = () => {
                   </option>
                   <option value="blackrock-mountain">Blackrock Mountain</option>
                   <option value="goblins-vs-gnomes">Goblins vs Gnomes</option>
-                  <option value="the-curse-of-naxxramas">Curse of Naxxramas</option>
+                  <option value="the-curse-of-naxxramas">
+                    Curse of Naxxramas
+                  </option>
                   <option value="legacy">Legacy</option>
                 </select>
               </li>
@@ -362,7 +383,9 @@ const Browse = () => {
           </li>
           <li
             onClick={() => setManaFilter("NONE")}
-            className={`mana-symbol ${manaFilter === "NONE" && "chosen-filter"}`}
+            className={`mana-symbol ${
+              manaFilter === "NONE" && "chosen-filter"
+            }`}
           >
             <img src={ManaCrystal} alt="" />
             <h2 className="mana-all">All</h2>
@@ -371,6 +394,7 @@ const Browse = () => {
         <IconButton
           onClick={() => setMenuOpen(true)}
           className="openFilter__button"
+          disableRipple={true}
         >
           <TuneIcon />
           <p>Filters</p>
@@ -378,7 +402,7 @@ const Browse = () => {
       </section>
       <Divider />
       <section id="card__list">
-        {filteredCardSet.map((card) => {
+        {loading ? <CircularProgress className="card__listLoading"/> : filteredCardSet.map((card) => {
           return (
             <div className="tilt card pic" key={card.cardId}>
               <img src={card.img} />
@@ -386,6 +410,8 @@ const Browse = () => {
           );
         })}
       </section>
+      <Divider />
+      <Footer />
     </>
   );
 };

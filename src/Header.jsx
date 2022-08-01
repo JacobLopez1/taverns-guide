@@ -2,7 +2,9 @@ import { Button } from "@mui/material";
 import React from "react";
 import "./Header.css";
 import Logo from "./assets/icon.png";
-import './Components.css'
+import "./Components.css";
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <div className="header__background">
@@ -15,12 +17,11 @@ const Header = () => {
         </div>
         <ul className="header__links">
           <li className="header__link link__hover-effect">
-            <a href="/rand">Random Cards</a>
+            <Link to="/rand">Random Card</Link>
           </li>
-          <li className="header__link link__hover-effect">
-            <a href="/rand30">Random List</a>
-          </li>
-          <Button>Browse Cards</Button>
+          <Link className="button__link" to="/browse">
+            <Button>Browse Cards</Button>
+          </Link>
         </ul>
       </div>
     </div>

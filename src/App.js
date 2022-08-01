@@ -8,6 +8,7 @@ import './assets/Belwe-Bold.svg'
 import './assets/Belwe-Bold.ttf'
 import './assets/Belwe-Bold.woff'
 import './assets/Belwe-Bold.woff2'
+import Random from "./Random";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/browse" element={<Browse />}/>
+          <Route path="/rand" element={<Random />}/>
         </Routes>
       </div>
     </Router>

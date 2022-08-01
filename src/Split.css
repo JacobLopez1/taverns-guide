@@ -1,14 +1,20 @@
 .split {
-    width: 50%;
+    width: 100%;
     overflow: hidden;
     position: relative;
-    height: 50vh;
+    height: 80vh;
 }
 
 .split__backgroundImg {
     position: absolute;
-    height: 100%;
+    min-width: 100%;
+    height: 100vh;
     transition: all 400ms ease;
+}
+
+.split__backgroundImg > img {
+    min-width: 100%;
+    height: 100%;
 }
 
 .split__content {
@@ -45,12 +51,11 @@
     font-size: 28px !important;
 }
 
-@media (max-width: 768px) {
-    .split {
-        width: 100%;
-    }
-    .split__backgroundImg > img {
-        height: 100%;
-        transform: translateX(-100px);
+@media (max-width: 580px) {
+    .split__content {
+        transform: translateY(0);
+        opacity: 1;
+        margin: 0 16px;
+        width: unset;
     }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "./Split.css";
 import { Button } from "@mui/material";
 import "./Components.css";
+import { Link } from 'react-router-dom'
 
 const Split = ({ image, title, content }) => {
   return (
@@ -10,7 +11,9 @@ const Split = ({ image, title, content }) => {
         <img src={image} />
       </figure>
       <div className="split__content">
-        <Button className="split__button main__button">{title}</Button>
+        <Link className="button__link" to="/rand">
+          <Button className="split__button main__button">{title}</Button>
+        </Link>
         <p>{content}</p>
       </div>
     </div>

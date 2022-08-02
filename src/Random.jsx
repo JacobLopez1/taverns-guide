@@ -133,9 +133,7 @@ const Random = () => {
   }
 
   useEffect(() => {
-    return () => {
-        getRandomCard()
-    };
+    getRandomCard()
   }, []);
 
   return (

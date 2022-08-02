@@ -16,8 +16,8 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/rand" element={<Random />}/>
           <Route path="/browse" element={<Browse />}/>
+          <Route path="/rand" element={<Random />}/>
         </Routes>
       </div>
     </Router>
